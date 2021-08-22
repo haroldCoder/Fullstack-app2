@@ -1,0 +1,79 @@
+ ReactDOM.render(
+  <this.Products/>,
+  document.querySelector(".panel")
+);
+
+ $(".cpanel").css("border","4px solid #02A1C5");
+ $(".cpanel").css("width","70%");
+ $(".cpanel").css("height","89vh");
+ $(".cpanel").css("margin","13px 27vh");
+ $(".title > h2").css("background","#00FF8AbF");
+ $(".title > h2").css("border-bottom-right-radius","12px");
+ $(".title > h2").css("border-top-right-radius","12px");
+ $(".title > h2").css("padding","10px 10px 15px 15px");
+ $(".context2 > form > input").css("width","100%");
+ $(".context2 > form > input").css("margin","8.5px 0px");
+ $(".context2").css("width","50%");
+ $("#img").css("border","8px double #1ACCD1CF");
+ $("#img").css("width","60%");
+ $("#img").css("height","43.5vh");
+ $(".productend").css("width","50%");
+ $(".productend").css("height","65vh");
+ $(".productend").css("border","10px double #11DCFF");
+ $(".cpanel > container").css("flex-flow","row");
+ $("#add").css("border","2px solid #01FF00");
+ $(".productend").css("margin-left","10.5%");
+ $(".next").css("width","80px");
+ $(".next").css("height","40px");
+ $(".next").css("position","absolute");
+ $(".next").css("top","93.5%");
+ $(".next").css("left","79%");
+ $(".next").css("border","2.5px solid #043c01");
+ 
+ $("#add").on("click",function(){
+    if($("#tit").val() != "" && $("#cov").val() != ""){
+      ReactDOM.render(
+        <section className="reelc d-flex">  
+      <div className="target">
+       <h2>{$("#tit").val()}</h2>
+       <img src={$("#cov").val()}/>
+       </div>
+      </section>,
+      document.querySelector(".productend")
+      );
+      $(".reelc").css("height","100%");
+      $(".target").css("height","100%");
+      $(".reelc > .target > h2").css("text-align","center");
+      $(".reelc > .target > img").css("width","98%");
+      $(".reelc > .target > img").css("height","90%");
+      books.push({"title": $("#tit").val(),"src": $("#cov").val(),"section": "create"});
+    }
+    else{
+     alert("¬¬¬");
+    }
+ });
+ $(".next").on("click",function(){
+   window.history.replaceState({stage:"enterDetails"},null,"next");
+   let key = books.filter(function(e){
+      if(e.section == "create"){
+        return e.src;
+      }
+      else{
+        return 0;
+      }
+   });
+   ReactDOM.render(
+    <section className="reels d-flex">
+    {key.map((e,index) =>(  
+    <div className="target">
+     <h2>{e.title}</h2>
+     <img src={e.src}/>
+     </div>
+    ))}
+    </section>,
+   document.querySelector(".cpanel")
+   );
+ });
+ window.history.pushState({"urlPath": '/page2'},"hidtory","/q1234&w=beware");
+ return 0;
+}
